@@ -31,13 +31,6 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
-  },
   "scripts": {
     "build-client": "webpack",
     "build-server": "tsc",
