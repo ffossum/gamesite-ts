@@ -37,6 +37,7 @@
     "type-check": "tsc --noEmit",
     "lint-check": "tslint -p .",
     "coverage": "jest --coverage",
+    "fmt-check": "prettier \"**/*.{js,jsx,ts,tsx,json}\" --list-different",
     "test": "yarn type-check && yarn lint-check && yarn coverage"
   }
 }
