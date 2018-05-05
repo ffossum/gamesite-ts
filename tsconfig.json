@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "jsx": "react",
     "outDir": "lib",
     "module": "commonjs",
     "target": "es2017",
     "strict": true,
-    "lib": ["es2017"],
+    "lib": ["dom", "es2017"],
     "sourceMap": true
   },
   "include": ["src/**/*"],
