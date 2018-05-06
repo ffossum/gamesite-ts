@@ -15,10 +15,15 @@
     "@types/koa": "^2.0.45",
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
+    "@types/react-router": "^4.0.24",
+    "@types/react-router-dom": "^4.2.6",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.4.3",
     "babel-loader": "^8.0.0-beta.2",
     "jest": "^22.4.3",
     "prettier": "^1.12.1",
-    "ts-jest": "^22.4.4",
+    "react-router-dom": "^4.2.2",
+    "stylus": "^0.54.5",
     "ts-node": "^6.0.2",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.12.0",
@@ -28,11 +33,14 @@
   },
   "dependencies": {
     "koa": "^2.5.1",
+    "koa-jwt": "^3.3.1",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0"
   },
   "scripts": {
     "build-client": "webpack",
+    "build-css": "stylus -o dist/ src/style/global.styl",
     "build-server": "tsc",
     "type-check": "tsc --noEmit",
     "lint-check": "tslint -p .",

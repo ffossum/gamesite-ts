@@ -2,6 +2,12 @@ import common from "../common/common";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
-const el = document.getElementById("root");
-ReactDOM.render(<div>Hello world!</div>, el);
+ReactDOM.render(
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
