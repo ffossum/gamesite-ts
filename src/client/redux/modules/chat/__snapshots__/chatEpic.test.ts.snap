@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`chat epic emits send message event to deepstream 1`] = `
+Array [
+  Array [
+    "chat:general",
+    Object {
+      "ch": "general",
+      "t": "chatmsg",
+      "txt": "message text",
+      "uid": "asdf-id",
+    },
+  ],
+]
+`;
