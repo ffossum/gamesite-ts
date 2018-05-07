@@ -1,4 +1,3 @@
-/* @flow */
 import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import Chat from "../../../components/chat/Chat";
