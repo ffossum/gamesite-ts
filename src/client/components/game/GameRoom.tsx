@@ -1,7 +1,7 @@
 import { find } from "lodash";
 import * as React from "react";
-// import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 import { PublicUserData } from "../../../common/user";
+import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 import { GameStatus } from "../../redux/modules/games/gamesReducer";
 import SpectatorRoom from "./SpectatorRoom";
 
@@ -90,7 +90,7 @@ export default class GameRoom extends React.Component<Props> {
               </button>,
             ]}
             {!isHost && <button onClick={this.handleLeaveClick}>Leave game</button>}
-            {/* <GameChatContainer gameId={gameId} /> */}
+            <GameChatContainer gameId={gameId} />
           </div>
         )}
       </div>

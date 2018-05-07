@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PublicUserData } from "../../../common/user";
+import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 import { Game } from "./GameRoom";
-// import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 
 export interface Props {
   enterSpectatorRoom: (gameId: string) => void;
@@ -51,7 +51,7 @@ export default class SpectatorRoom extends React.Component<Props> {
             <button disabled={!user} onClick={this.handleJoinClick}>
               Join game
             </button>
-            {/* <GameChatContainer gameId={gameId} /> */}
+            <GameChatContainer gameId={gameId} />
           </div>
         )}
       </div>
