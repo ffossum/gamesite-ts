@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { loginFailure, loginRequest, loginSuccess } from "./loginActions";
 import reducer from "./loginReducer";
 

@@ -1,4 +1,3 @@
-/* @flow */
 export const FETCHED_USER_DATA = "data/fetched user(s)";
 import { PublicUserData } from "../../../../common/user";
 

@@ -1,8 +1,6 @@
+import { omit } from "ramda";
 import { Action } from "../../actions";
 import { ChannelState } from "./channelReducer";
-import { ChannelName } from "./chatActions";
-
-import { omit } from "ramda";
 import channelReducer from "./channelReducer";
 import { CLEAR_CHAT, RECEIVE_MESSAGE } from "./chatActions";
 

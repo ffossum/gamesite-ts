@@ -1,4 +1,5 @@
 import * as React from "react";
+import ChatContainer from "../redux/modules/chat/ChatContainer";
 
 export default function FrontPage() {
   return (
@@ -7,6 +8,10 @@ export default function FrontPage() {
 
       <section>
         <h2>News</h2>
+      </section>
+
+      <section>
+        <ChatContainer channelName="general" />
       </section>
     </main>
   );

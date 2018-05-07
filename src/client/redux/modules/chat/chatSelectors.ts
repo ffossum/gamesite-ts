@@ -1,8 +1,5 @@
 import { createSelector } from "reselect";
-import { PrivateUserData } from "../../../../common/user";
-import { GameDataState } from "../games/gamesReducer";
 import { State } from "../root";
-import { UsersState } from "../users/usersReducer";
 
 const getChat = (state: State) => state.chat;
 const getUsers = (state: State) => state.users;

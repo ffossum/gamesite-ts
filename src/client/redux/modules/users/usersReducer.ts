@@ -1,4 +1,3 @@
-/* @flow */
 import { PublicUserData } from "../../../../common/user";
 import { Action } from "../../actions";
 import { AUTHENTICATED_USER } from "../session/sessionActions";

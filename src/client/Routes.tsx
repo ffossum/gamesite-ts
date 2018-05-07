@@ -1,8 +1,7 @@
 import * as React from "react";
-
-import FrontPage from "./components/Frontpage";
+import FrontPage from "./components/FrontPage";
 import Lobby from "./components/lobby/Lobby";
-import Nav from "./components/Nav";
+import Nav from "./components/nav/Nav";
 
 import { Route, Switch } from "react-router";
 

@@ -1,5 +1,4 @@
-/* @flow */
-import { History, Location } from "history";
+import { History } from "history";
 import { Action } from "../actions";
 import DeepstreamClient from "../deepstreamClient";
 

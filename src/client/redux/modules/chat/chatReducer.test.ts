@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { clearChat, receiveMessage } from "./chatActions";
 import chatReducer from "./chatReducer";
 

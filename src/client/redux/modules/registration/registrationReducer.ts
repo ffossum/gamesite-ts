@@ -1,4 +1,3 @@
-/* @flow */
 import { Action } from "../../actions";
 import {
   REGISTRATION_FAILURE,

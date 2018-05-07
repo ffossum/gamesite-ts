@@ -2,15 +2,11 @@ import { union, without } from "ramda";
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "../lobby/lobbyActions";
 import { FETCH_GAME_DATA_SUCCESS } from "./gameDataActions";
-
 import {
   GAME_CANCELED,
   GAME_STARTED,
-  GameCanceledAction,
-  GameStartedAction,
   PLAYER_JOINED,
   PLAYER_LEFT,
-  PlayerJoinedAction,
   PlayerLeftAction,
 } from "./gameRoomActions";
 

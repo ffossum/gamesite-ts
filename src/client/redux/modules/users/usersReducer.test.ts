@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { fetchedUserData } from "./userDataActions";
 import usersReducer from "./usersReducer";
 

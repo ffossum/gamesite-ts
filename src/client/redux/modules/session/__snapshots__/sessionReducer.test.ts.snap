@@ -2,6 +2,6 @@
 
 exports[`session reducer initial state 1`] = `
 Object {
-  "user": null,
+  "user": undefined,
 }
 `;

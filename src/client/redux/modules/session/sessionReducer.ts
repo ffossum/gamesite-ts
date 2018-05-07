@@ -5,10 +5,10 @@ import { AUTHENTICATED_USER } from "./sessionActions";
 export type SessionUser = PrivateUserData;
 
 export interface SessionState {
-  user: SessionUser | null;
+  user?: SessionUser;
 }
 const initialState: SessionState = {
-  user: null,
+  user: undefined,
 };
 
 export default function sessionReducer(state: SessionState = initialState, action: Action) {

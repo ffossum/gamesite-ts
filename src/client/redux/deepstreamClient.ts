@@ -1,4 +1,3 @@
-/* @flow */
 import { fromEventPattern, Observable } from "rxjs";
 
 export default class DeepstreamClient {

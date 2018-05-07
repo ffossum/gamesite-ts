@@ -1,4 +1,3 @@
-/* @flow */
 import { GameDataState, GamesState } from "../games/gamesReducer";
 
 export const CREATE_GAME_REQUEST = "lobby/create game request";

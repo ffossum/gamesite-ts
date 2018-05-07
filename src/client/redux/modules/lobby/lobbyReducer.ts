@@ -1,4 +1,3 @@
-/* @flow */
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "./lobbyActions";
 

@@ -3,6 +3,7 @@
   "rules": {
     "interface-name": [true, "never-prefix"],
     "no-unused-expression": [true, "allow-fast-null-checks"],
-    "object-literal-sort-keys": [true, "match-declaration-order"]
+    "object-literal-sort-keys": false,
+    "no-unused-variable": true
   }
 }

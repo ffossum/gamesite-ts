@@ -1,15 +1,12 @@
-/* @flow */
-import { Store } from "redux";
-import { Epic, ofType } from "redux-observable";
-import { Observable, of } from "rxjs";
-import { catchError, filter, flatMap, map, tap } from "rxjs/operators";
-import { LOGIN_REQUEST, loginFailure, loginSuccess } from "./loginActions";
-import { LoginFailureAction, LoginRequestAction, LoginSuccessAction } from "./loginActions";
-
+import { ofType } from "redux-observable";
+import { of } from "rxjs";
+import { catchError, flatMap, map, tap } from "rxjs/operators";
 import { Action } from "../../actions";
-import { GamesiteEpic, State } from "../root";
+import { GamesiteEpic } from "../root";
+import { LOGIN_REQUEST, loginFailure, loginSuccess } from "./loginActions";
+import { LoginRequestAction } from "./loginActions";
 
-const loginEpic: GamesiteEpic = (action$, store, { ajax, location }) =>
+const loginEpic: GamesiteEpic = (action$, _, { ajax, location }) =>
   action$.pipe(
     ofType<Action, LoginRequestAction>(LOGIN_REQUEST),
     flatMap(action =>

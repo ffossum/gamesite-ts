@@ -1,5 +1,3 @@
-/* @flow */
-
 export const FETCH_GAME_DATA_REQUEST = "data/fetch game request";
 export const FETCH_GAME_DATA_SUCCESS = "data/fetch game success";
 

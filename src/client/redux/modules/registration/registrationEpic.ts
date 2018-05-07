@@ -1,8 +1,6 @@
-/* @flow */
-import { Store } from "redux";
 import { ofType } from "redux-observable";
-import { Observable, of } from "rxjs";
-import { catchError, filter, flatMap, map, tap } from "rxjs/operators";
+import { of } from "rxjs";
+import { catchError, flatMap, map, tap } from "rxjs/operators";
 import { Action } from "../../actions";
 import { GamesiteEpic } from "../root";
 import {
@@ -12,7 +10,7 @@ import {
 } from "./registrationActions";
 import { RegistrationRequestAction } from "./registrationActions";
 
-const registrationEpic: GamesiteEpic = (action$, store, { ajax, location }) => {
+const registrationEpic: GamesiteEpic = (action$, _, { ajax, location }) => {
   return action$.pipe(
     ofType<Action, RegistrationRequestAction>(REGISTRATION_REQUEST),
     flatMap(action =>

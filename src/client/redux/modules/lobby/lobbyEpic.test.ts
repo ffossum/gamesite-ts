@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { ActionsObservable } from "redux-observable";
 import { asyncScheduler, empty, from, identity, NEVER, Observable, of } from "rxjs";
 import {

@@ -1,9 +1,7 @@
-/* @flow */
 import { stringify } from "query-string";
 import { chain, values } from "ramda";
-import { Store } from "redux";
 import { ofType } from "redux-observable";
-import { merge, Observable } from "rxjs";
+import { merge } from "rxjs";
 import { bufferTime, distinct, filter, flatMap, map } from "rxjs/operators";
 import { Action } from "../../actions";
 import { ReceiveMessageAction } from "../chat/chatActions";
@@ -14,8 +12,8 @@ import { PlayerJoinedAction } from "../games/gameRoomActions";
 import { PLAYER_JOINED } from "../games/gameRoomActions";
 import { GameCreatedAction, GameUpdatedAction, RefreshLobbyAction } from "../lobby/lobbyActions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "../lobby/lobbyActions";
-import { GamesiteEpic, State } from "../root";
-import { fetchedUserData, FetchedUserDataAction } from "./userDataActions";
+import { GamesiteEpic } from "../root";
+import { fetchedUserData } from "./userDataActions";
 
 const userDataEpic: GamesiteEpic = (action$, store, { ajax }) => {
   return merge(

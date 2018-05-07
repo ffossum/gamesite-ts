@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { ActionsObservable } from "redux-observable";
 import { EMPTY, Observable, of } from "rxjs";
 import { toArray } from "rxjs/operators";

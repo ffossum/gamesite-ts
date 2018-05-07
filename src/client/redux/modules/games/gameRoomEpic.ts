@@ -1,7 +1,5 @@
-import { Store } from "redux";
-import { combineEpics, Epic, ofType } from "redux-observable";
-import { EMPTY, from, merge, Observable, of } from "rxjs";
-import { observable } from "rxjs";
+import { combineEpics, ofType } from "redux-observable";
+import { EMPTY, merge, of } from "rxjs";
 import {
   catchError,
   filter,
@@ -13,11 +11,9 @@ import {
   tap,
 } from "rxjs/operators";
 import { Action } from "../../actions";
-import DeepstreamClient from "../../deepstreamClient";
 import deepstreamEventToActions from "../../deepstreamEventToActions";
 import { clearChat } from "../chat/chatActions";
 import { GamesiteEpic } from "../root";
-import { Dependencies, State } from "../root";
 import { FetchGameDataRequestAction } from "./gameDataActions";
 import {
   FETCH_GAME_DATA_REQUEST,
@@ -44,7 +40,7 @@ import {
   StartGameAction,
 } from "./gameRoomActions";
 
-const enterRoomEpic: GamesiteEpic = (action$, store, deps) => {
+const enterRoomEpic: GamesiteEpic = action$ => {
   return action$.pipe(
     ofType<Action, EnterRoomAction>(ENTER_ROOM),
     filter(action => action.payload.shouldFetchGameData),
@@ -52,7 +48,7 @@ const enterRoomEpic: GamesiteEpic = (action$, store, deps) => {
   );
 };
 
-const fetchGameDataEpic: GamesiteEpic = (action$, store, { ajax }) => {
+const fetchGameDataEpic: GamesiteEpic = (action$, _, { ajax }) => {
   return action$.pipe(
     ofType<Action, FetchGameDataRequestAction>(FETCH_GAME_DATA_REQUEST),
     switchMap(action => {
@@ -72,7 +68,7 @@ const fetchGameDataEpic: GamesiteEpic = (action$, store, { ajax }) => {
   );
 };
 
-const exitRoomEpic: GamesiteEpic = (action$, store, deps) => {
+const exitRoomEpic: GamesiteEpic = action$ => {
   return action$.pipe(
     ofType<Action, ExitRoomAction>(EXIT_ROOM),
     flatMap(action => {
@@ -87,7 +83,7 @@ const exitRoomEpic: GamesiteEpic = (action$, store, deps) => {
   );
 };
 
-const gameRoomEpic: GamesiteEpic = (action$, store, { deepstreamClient }) => {
+const gameRoomEpic: GamesiteEpic = (action$, _, { deepstreamClient }) => {
   return merge(
     action$.pipe(
       ofType<Action, EnterSpectatorRoomAction>(ENTER_SPECTATOR),
