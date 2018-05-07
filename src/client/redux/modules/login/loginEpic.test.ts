@@ -1,5 +1,5 @@
-import { Observable, of, throwError } from "rxjs";
 import { ActionsObservable } from "redux-observable";
+import { Observable, of, throwError } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { loginFailure, loginRequest, loginSuccess } from "./loginActions";
 import loginEpic from "./loginEpic";
