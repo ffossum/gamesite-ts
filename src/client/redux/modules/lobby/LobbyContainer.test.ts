@@ -1,11 +1,11 @@
-import { rootReducer } from "../root";
+import { rootReducer, State } from "../root";
 import { authenticatedUser } from "../session/sessionActions";
 import { createGameRequest, refreshLobby } from "./lobbyActions";
 import { mapDispatchToProps, mapStateToProps, mergeProps } from "./LobbyContainer";
 
 describe("lobby container", () => {
-  let state;
-  let dispatch;
+  let state: State;
+  let dispatch: any;
 
   beforeEach(() => {
     state = rootReducer(

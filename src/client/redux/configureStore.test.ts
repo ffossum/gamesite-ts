@@ -26,7 +26,7 @@ describe("configure redux store", () => {
   test("with preloaded state", () => {
     const plainStore = configureStore(undefined, dependencies);
 
-    const preloadedState = rootReducer(undefined, authenticatedUser(user));
+    const preloadedState = rootReducer(undefined as any, authenticatedUser(user));
     const preloadedStore = configureStore(preloadedState, dependencies);
 
     expect(plainStore.getState()).not.toEqual(preloadedStore.getState());

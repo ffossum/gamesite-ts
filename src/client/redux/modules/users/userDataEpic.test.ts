@@ -1,17 +1,18 @@
-import { createStore } from "redux";
+import { createStore, Store } from "redux";
 import { ActionsObservable } from "redux-observable";
-import { from, Observable, of } from "rxjs";
+import { of } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { receiveMessage } from "../chat/chatActions";
 import { gameCreated } from "../lobby/lobbyActions";
-import { rootReducer } from "../root";
+import { rootReducer, State } from "../root";
 import { fetchedUserData } from "./userDataActions";
 import userDataEpic from "./userDataEpic";
 
 describe("user data epic", () => {
-  let ajax;
-  let store;
-  let dependencies;
+  let ajax: any;
+  let store: Store<State>;
+  let dependencies: any;
+  let state$: any;
 
   beforeEach(() => {
     ajax = {
@@ -26,10 +27,14 @@ describe("user data epic", () => {
       ])
     );
     store = createStore(rootReducer);
+    state$ = {
+      get value() {
+        return store.getState();
+      },
+    };
 
     dependencies = {
       ajax,
-      store,
     };
   });
   test("fetches host user data when a new game is created", async () => {
@@ -41,7 +46,7 @@ describe("user data epic", () => {
     });
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await userDataEpic(action$, store, dependencies)
+    const resultActions = await userDataEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -68,7 +73,7 @@ describe("user data epic", () => {
 
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await userDataEpic(action$, store, dependencies)
+    const resultActions = await userDataEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -104,7 +109,7 @@ describe("user data epic", () => {
 
     const action$ = new ActionsObservable(of(action));
 
-    await userDataEpic(action$, store, dependencies)
+    await userDataEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

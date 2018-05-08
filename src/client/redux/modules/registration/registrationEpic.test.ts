@@ -1,5 +1,5 @@
 import { ActionsObservable } from "redux-observable";
-import { Observable, of, throwError } from "rxjs";
+import { of, throwError } from "rxjs";
 import { toArray } from "rxjs/operators";
 import {
   registrationFailure,
@@ -9,14 +9,14 @@ import {
 import registrationEpic from "./registrationEpic";
 
 describe("registration epic", () => {
-  const store: any = undefined;
+  const state$: any = undefined;
   const registration = {
     username: "bob",
     email: "bob@test.com",
     password: "bobisthebest",
     repeatPassword: "bobisthebest",
   };
-  let location;
+  let location: any;
   beforeEach(() => {
     location = {
       reload: jest.fn(),
@@ -39,7 +39,7 @@ describe("registration epic", () => {
       ajax,
       location,
     };
-    const actions = await registrationEpic(action$, store, dependencies)
+    const actions = await registrationEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -62,7 +62,7 @@ describe("registration epic", () => {
       ajax,
       location,
     };
-    const actions = await registrationEpic(action$, store, dependencies)
+    const actions = await registrationEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

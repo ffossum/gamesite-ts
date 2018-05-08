@@ -1,5 +1,5 @@
 import { ActionsObservable } from "redux-observable";
-import { asyncScheduler, EMPTY, from, NEVER, Observable, of } from "rxjs";
+import { asyncScheduler, EMPTY, NEVER, of } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { clearChat } from "../chat/chatActions";
 import { fetchGameDataRequest, fetchGameDataSuccess } from "./gameDataActions";
@@ -15,7 +15,7 @@ import gameRoomEpic from "./gameRoomEpic";
 import { GameDataState } from "./gamesReducer";
 
 describe("game room epic", () => {
-  const store: any = undefined;
+  const state$: any = undefined;
   let dependencies: any;
   let deepstreamClient: any;
   let ajax: any;
@@ -40,7 +40,7 @@ describe("game room epic", () => {
 
     deepstreamClient.subscribe.mockReturnValue(EMPTY);
 
-    await gameRoomEpic(action$, store, dependencies)
+    await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -54,7 +54,7 @@ describe("game room epic", () => {
     );
 
     deepstreamClient.subscribe.mockReturnValue(NEVER);
-    await gameRoomEpic(action$, store, dependencies)
+    await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
     // Pass = No timeout
@@ -65,7 +65,7 @@ describe("game room epic", () => {
     const action = enterRoom("game_id", shouldFetchGameData);
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await gameRoomEpic(action$, store, dependencies)
+    const resultActions = await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -77,7 +77,7 @@ describe("game room epic", () => {
     const action = enterRoom("game_id", shouldFetchGameData);
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await gameRoomEpic(action$, store, dependencies)
+    const resultActions = await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -97,7 +97,7 @@ describe("game room epic", () => {
 
     ajax.getJSON.mockReturnValue(of(mockGame));
 
-    const resultActions = await gameRoomEpic(action$, store, dependencies)
+    const resultActions = await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -109,7 +109,7 @@ describe("game room epic", () => {
     const action = exitRoom("game_id", isInGame);
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await gameRoomEpic(action$, store, dependencies)
+    const resultActions = await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -121,7 +121,7 @@ describe("game room epic", () => {
     const action = exitRoom("game_id", isInGame);
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await gameRoomEpic(action$, store, dependencies)
+    const resultActions = await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -131,7 +131,7 @@ describe("game room epic", () => {
   test("makes rpc join game request", async () => {
     const action = joinGame("user_id", "game_id");
     const action$ = new ActionsObservable(of(action));
-    await gameRoomEpic(action$, store, dependencies)
+    await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -141,7 +141,7 @@ describe("game room epic", () => {
   test("makes rpc leave game request", async () => {
     const action = leaveGame("user_id", "game_id");
     const action$ = new ActionsObservable(of(action));
-    await gameRoomEpic(action$, store, dependencies)
+    await gameRoomEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

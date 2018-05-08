@@ -3,7 +3,7 @@ import DeepstreamClient from "./deepstreamClient";
 
 describe("deepstream client", () => {
   test("constructor passes args to deepstream", () => {
-    const deepstream = jest.fn();
+    const deepstream: any = jest.fn();
     const client = new DeepstreamClient(deepstream, "localhost:6020");
 
     expect(client).toBeDefined();
@@ -16,9 +16,9 @@ describe("deepstream client", () => {
       const mockClient = {
         login: jest.fn(),
       };
-      const deepstream = () => mockClient;
+      const deepstream: any = () => mockClient;
 
-      const client = new DeepstreamClient(deepstream);
+      const client = new DeepstreamClient(deepstream, "url");
       client.login();
 
       expect(mockClient.login).toHaveBeenCalledTimes(1);
@@ -26,11 +26,11 @@ describe("deepstream client", () => {
 
     test("returns a promise", async () => {
       const mockClient = {
-        login: cb => cb(true),
+        login: (cb: any) => cb(true),
       };
-      const deepstream = () => mockClient;
+      const deepstream: any = () => mockClient;
 
-      const client = new DeepstreamClient(deepstream);
+      const client = new DeepstreamClient(deepstream, "url");
       const resolved = await client.login();
 
       expect(resolved).toBe(client);
@@ -46,17 +46,17 @@ describe("deepstream client", () => {
       42,
     ];
 
-    let handler;
+    let handler: any;
 
     const mockClient = {
       event: {
-        subscribe: jest.fn().mockImplementation((eventName, h) => (handler = h)),
+        subscribe: jest.fn().mockImplementation((_, h) => (handler = h)),
         unsubscribe: jest.fn(),
       },
     };
 
-    const deepstream = () => mockClient;
-    const client = new DeepstreamClient(deepstream);
+    const deepstream: any = () => mockClient;
+    const client = new DeepstreamClient(deepstream, "url");
     const event$ = client.subscribe("event name");
 
     const eventsPromise = event$.pipe(take(testEvents.length), toArray()).toPromise();
@@ -72,8 +72,8 @@ describe("deepstream client", () => {
         emit: jest.fn(),
       },
     };
-    const deepstream = () => mockClient;
-    const client = new DeepstreamClient(deepstream);
+    const deepstream: any = () => mockClient;
+    const client = new DeepstreamClient(deepstream, "url");
 
     client.emit("event name", "data");
 
@@ -88,8 +88,8 @@ describe("deepstream client", () => {
           make: jest.fn(),
         },
       };
-      const deepstream = () => mockClient;
-      const client = new DeepstreamClient(deepstream);
+      const deepstream: any = () => mockClient;
+      const client = new DeepstreamClient(deepstream, "url");
 
       client.make("rpc-name", "data");
 
@@ -99,18 +99,18 @@ describe("deepstream client", () => {
     });
 
     test("returns promise", () => {
-      let callback: (error: any, result?: any) => void;
+      let callback: any;
 
       const mockClient = {
         rpc: {
-          make(rpcName, data, cb) {
+          make(_0: any, _1: any, cb: any) {
             callback = cb;
           },
         },
       };
 
-      const deepstream = () => mockClient;
-      const client = new DeepstreamClient(deepstream);
+      const deepstream: any = () => mockClient;
+      const client = new DeepstreamClient(deepstream, "url");
 
       let promise = client.make("rpc-name", "data");
       callback && callback("error");

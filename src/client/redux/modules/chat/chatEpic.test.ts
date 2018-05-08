@@ -1,6 +1,5 @@
 import { ActionsObservable } from "redux-observable";
-import { asyncScheduler, EMPTY, NEVER, Observable, of } from "rxjs";
-import { AsyncScheduler } from "rxjs/internal/scheduler/AsyncScheduler";
+import { asyncScheduler, EMPTY, NEVER, of } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { isISO8601 } from "validator";
 import {
@@ -13,9 +12,9 @@ import {
 import chatEpic from "./chatEpic";
 
 describe("chat epic", () => {
-  let deepstreamClient;
+  let deepstreamClient: any;
   let dependencies: any;
-  const store = null;
+  const state$: any = undefined;
 
   beforeEach(() => {
     deepstreamClient = {
@@ -31,7 +30,7 @@ describe("chat epic", () => {
     const action = sendMessage("asdf-id", "general", "message text");
     const action$ = new ActionsObservable(of(action));
 
-    const actions = await chatEpic(action$, store, dependencies)
+    const actions = await chatEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -46,7 +45,7 @@ describe("chat epic", () => {
 
     deepstreamClient.subscribe.mockReturnValueOnce(EMPTY);
 
-    const actions = await chatEpic(action$, store, dependencies)
+    const actions = await chatEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -66,7 +65,7 @@ describe("chat epic", () => {
     };
     deepstreamClient.subscribe.mockReturnValueOnce(of(eventData));
 
-    const actions = await chatEpic(action$, store, dependencies)
+    const actions = await chatEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -88,7 +87,7 @@ describe("chat epic", () => {
 
     deepstreamClient.subscribe.mockReturnValueOnce(NEVER);
 
-    await chatEpic(action$, store, dependencies)
+    await chatEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

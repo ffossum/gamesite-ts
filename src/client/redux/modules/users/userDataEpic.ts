@@ -15,7 +15,7 @@ import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "../lobby/lobbyActions
 import { GamesiteEpic } from "../root";
 import { fetchedUserData } from "./userDataActions";
 
-const userDataEpic: GamesiteEpic = (action$, store, { ajax }) => {
+const userDataEpic: GamesiteEpic = (action$, state$, { ajax }) => {
   return merge(
     action$.pipe(
       ofType<Action, PlayerJoinedAction>(PLAYER_JOINED),
@@ -58,7 +58,7 @@ const userDataEpic: GamesiteEpic = (action$, store, { ajax }) => {
   ).pipe(
     distinct(),
 
-    filter(userId => !store.getState().users[userId]),
+    filter(userId => !state$.value.users[userId]),
     bufferTime(100),
     filter(userIds => userIds.length > 0),
     flatMap(userIds => {

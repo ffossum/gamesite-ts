@@ -1,16 +1,16 @@
 import { ActionsObservable } from "redux-observable";
-import { Observable, of, throwError } from "rxjs";
+import { of, throwError } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { loginFailure, loginRequest, loginSuccess } from "./loginActions";
 import loginEpic from "./loginEpic";
 
 describe("login epic", () => {
-  const store: any = undefined;
+  const state$: any = undefined;
   const login = {
     email: "bob@test.com",
     password: "bobisthebest",
   };
-  let location;
+  let location: any;
   beforeEach(() => {
     location = {
       reload: jest.fn(),
@@ -33,7 +33,7 @@ describe("login epic", () => {
       ajax,
       location,
     };
-    const actions = await loginEpic(action$, store, dependencies)
+    const actions = await loginEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -56,7 +56,7 @@ describe("login epic", () => {
       ajax,
       location,
     };
-    const actions = await loginEpic(action$, store, dependencies)
+    const actions = await loginEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

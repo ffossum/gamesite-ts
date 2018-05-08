@@ -1,22 +1,12 @@
 import { ActionsObservable } from "redux-observable";
-import { asyncScheduler, empty, from, identity, NEVER, Observable, of } from "rxjs";
-import {
-  filter,
-  first,
-  flatMap,
-  observeOn,
-  share,
-  skipWhile,
-  take,
-  takeUntil,
-  toArray,
-} from "rxjs/operators";
+import { asyncScheduler, empty, of } from "rxjs";
+import { toArray } from "rxjs/operators";
 import { createGameRequest, enterLobby, gameCreated, gameUpdated } from "./lobbyActions";
 import lobbyEpic from "./lobbyEpic";
 
 describe("lobby epic", () => {
-  const store = undefined;
-  let deepstreamClient;
+  const state$: any = undefined;
+  let deepstreamClient: any;
   beforeEach(() => {
     deepstreamClient = {
       subscribe: jest.fn(),
@@ -32,7 +22,7 @@ describe("lobby epic", () => {
     const action = enterLobby();
     const action$ = new ActionsObservable(of(action, asyncScheduler));
 
-    await lobbyEpic(action$, store, dependencies)
+    await lobbyEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -58,7 +48,7 @@ describe("lobby epic", () => {
     const action = enterLobby();
     const action$ = new ActionsObservable(of(action, asyncScheduler));
 
-    const resultActions = await lobbyEpic(action$, store, dependencies)
+    const resultActions = await lobbyEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -81,7 +71,7 @@ describe("lobby epic", () => {
     const action = enterLobby();
     const action$ = new ActionsObservable(of(action, asyncScheduler));
 
-    const resultActions = await lobbyEpic(action$, store, dependencies)
+    const resultActions = await lobbyEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -101,7 +91,7 @@ describe("lobby epic", () => {
     const action = createGameRequest("user-id");
     const action$ = new ActionsObservable(of(action, asyncScheduler));
 
-    await lobbyEpic(action$, store, dependencies)
+    await lobbyEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

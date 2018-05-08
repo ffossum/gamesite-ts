@@ -1,12 +1,12 @@
 import { ActionsObservable } from "redux-observable";
-import { EMPTY, Observable, of } from "rxjs";
+import { EMPTY, of } from "rxjs";
 import { toArray } from "rxjs/operators";
 import { playerJoined, playerLeft } from "../games/gameRoomActions";
 import { authenticatedUser } from "./sessionActions";
 import sessionEpic from "./sessionEpic";
 
 describe("session epic", () => {
-  const store: any = undefined;
+  const state$: any = undefined;
   let deepstreamClient: any;
   let dependencies: any;
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe("session epic", () => {
     const action = authenticatedUser(userData);
     const action$ = new ActionsObservable(of(action));
 
-    await sessionEpic(action$, store, dependencies)
+    await sessionEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 
@@ -67,7 +67,7 @@ describe("session epic", () => {
     const action = authenticatedUser(userData);
     const action$ = new ActionsObservable(of(action));
 
-    const resultActions = await sessionEpic(action$, store, dependencies)
+    const resultActions = await sessionEpic(action$, state$, dependencies)
       .pipe(toArray())
       .toPromise();
 

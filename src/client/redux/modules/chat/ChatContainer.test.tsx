@@ -1,24 +1,24 @@
-import { createStore } from "redux";
-import { rootReducer } from "../root";
+import { createStore, Store } from "redux";
+import { rootReducer, State } from "../root";
 import { authenticatedUser } from "../session/sessionActions";
 import { fetchedUserData } from "../users/userDataActions";
 import { receiveMessage, sendMessage } from "./chatActions";
 import { createMapStateToProps, mapDispatchToProps, mergeProps } from "./ChatContainer";
 
 describe("chat container", () => {
-  let store;
-  let dispatch;
-  let mapStateToProps;
+  let store: Store<State>;
+  let dispatch: any;
   const ownProps = { channelName: "channel" };
+  let mapStateToProps = createMapStateToProps(undefined as any, ownProps);
 
   beforeEach(() => {
     store = createStore(rootReducer);
     dispatch = jest.fn();
-    mapStateToProps = createMapStateToProps(undefined, ownProps);
+    mapStateToProps = createMapStateToProps(undefined as any, ownProps);
   });
 
   test("does not dispatch action when logged out user tries to send message", () => {
-    const stateProps = mapStateToProps(store.getState(), ownProps);
+    const stateProps = mapStateToProps(store.getState());
     const dispatchProps = mapDispatchToProps(dispatch);
 
     const props = mergeProps(stateProps, dispatchProps, ownProps);
@@ -37,7 +37,7 @@ describe("chat container", () => {
       })
     );
 
-    const stateProps = mapStateToProps(store.getState(), ownProps);
+    const stateProps = mapStateToProps(store.getState());
     const dispatchProps = mapDispatchToProps(dispatch);
 
     const props = mergeProps(stateProps, dispatchProps, ownProps);
@@ -60,7 +60,7 @@ describe("chat container", () => {
       fetchedUserData([{ id: "qwer-id", username: "qwer" }, { id: "zxcv-id", username: "zxcv" }])
     );
 
-    const stateProps = mapStateToProps(store.getState(), ownProps);
+    const stateProps = mapStateToProps(store.getState());
 
     expect(stateProps).toMatchSnapshot();
   });

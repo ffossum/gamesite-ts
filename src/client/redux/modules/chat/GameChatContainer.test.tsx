@@ -1,22 +1,22 @@
-import { createStore } from "redux";
+import { createStore, Store } from "redux";
 import { fetchGameDataSuccess } from "../games/gameDataActions";
-import { rootReducer } from "../root";
+import { rootReducer, State } from "../root";
 import { authenticatedUser } from "../session/sessionActions";
 import { fetchedUserData } from "../users/userDataActions";
 import { receiveMessage } from "./chatActions";
 import { createMapStateToProps, mapDispatchToProps, mergeProps } from "./GameChatContainer";
 
 describe("GameChatContainer", () => {
-  let store;
-  let dispatch;
-  let mapStateToProps;
+  let store: Store<State>;
+  let dispatch: any;
+  let mapStateToProps: any;
   const ownProps = { gameId: "game_id" };
 
   beforeEach(() => {
     store = createStore(rootReducer);
 
     dispatch = jest.fn();
-    mapStateToProps = createMapStateToProps(undefined, ownProps);
+    mapStateToProps = createMapStateToProps(undefined as any, ownProps);
   });
 
   test("does not dispatch send message if game is unavailable", () => {

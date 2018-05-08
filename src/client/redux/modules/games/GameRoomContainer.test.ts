@@ -1,12 +1,12 @@
-import { rootReducer } from "../root";
+import { rootReducer, State } from "../root";
 import { authenticatedUser } from "../session/sessionActions";
 import { fetchGameDataSuccess } from "./gameDataActions";
 import { enterRoom, exitRoom, joinGame, playerJoined } from "./gameRoomActions";
 import { mapDispatchToProps, mapStateToProps, mergeProps } from "./GameRoomContainer";
 
 describe("GameRoomContainer", () => {
-  let state;
-  let dispatch;
+  let state: State;
+  let dispatch: any;
   let ownProps: any;
 
   beforeEach(() => {
