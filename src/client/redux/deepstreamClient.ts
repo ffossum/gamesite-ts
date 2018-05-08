@@ -1,10 +1,10 @@
 import { fromEventPattern, Observable } from "rxjs";
 
 export default class DeepstreamClient {
-  private client: any;
+  private client: deepstreamIO.Client;
 
-  constructor(deepstream: any, ...args: any[]) {
-    this.client = deepstream(...args);
+  constructor(deepstream: deepstreamIO.deepstreamStatic, url: string, ...args: any[]) {
+    this.client = deepstream(url, ...args);
   }
   public login(...args: any[]): Promise<DeepstreamClient> {
     return new Promise((resolve, reject) => {
@@ -14,9 +14,10 @@ export default class DeepstreamClient {
     });
   }
   public subscribe(eventName: string): Observable<any> /* TODO type */ {
+    type Handler = (data: any) => void;
     return fromEventPattern(
-      handler => this.client.event.subscribe(eventName, handler),
-      handler => this.client.event.unsubscribe(eventName, handler)
+      handler => this.client.event.subscribe(eventName, handler as Handler),
+      handler => this.client.event.unsubscribe(eventName, handler as Handler)
     );
   }
   public emit(eventName: string, data?: any): void {

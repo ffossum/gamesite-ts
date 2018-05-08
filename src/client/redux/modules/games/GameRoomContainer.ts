@@ -53,7 +53,6 @@ export function mapDispatchToProps(dispatch: Dispatch<State>) {
 export function mergeProps(
   stateProps: ReturnType<typeof mapStateToProps>,
   dispatchProps: ReturnType<typeof mapDispatchToProps>
-  // ownProps,
 ): GameRoomProps {
   const { game, gameId, users, user } = stateProps;
 

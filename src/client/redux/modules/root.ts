@@ -1,4 +1,5 @@
 import { History } from "history";
+import { compose } from "redux";
 import { Action } from "../actions";
 import DeepstreamClient from "../deepstreamClient";
 
@@ -49,7 +50,7 @@ export interface Dependencies {
   deepstreamClient: DeepstreamClient;
   location: typeof window.location;
   history: History;
-  devToolsCompose: any;
+  devToolsCompose?: typeof compose;
 }
 
 export type GamesiteEpic = Epic<Action, State, Dependencies>;

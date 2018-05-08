@@ -1,4 +1,4 @@
-import * as format from "date-fns/format";
+import format from "date-fns/format";
 import * as React from "react";
 import { Link, Route } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";

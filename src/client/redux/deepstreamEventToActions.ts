@@ -1,5 +1,5 @@
-// import { receiveMessage } from "./modules/chat/chatActions";
 import { Action } from "./actions";
+import { receiveMessage } from "./modules/chat/chatActions";
 import {
   gameCanceled,
   gameStarted,
@@ -71,10 +71,10 @@ export default function deepstreamEventToActions(event: DeepstreamEvent): Action
       const gameId = event.p.gid;
       return [gameStarted(gameId)];
     }
-    // case "chatmsg": {
-    //   const time = new Date().toISOString();
-    //   return [receiveMessage(event, time)];
-    // }
+    case "chatmsg": {
+      const time = new Date().toISOString();
+      return [receiveMessage(event, time)];
+    }
     default:
       return [];
   }
