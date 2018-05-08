@@ -1,5 +1,3 @@
-/* @flow */
-/* eslint-env jest */
 import { rootReducer } from "../root";
 import { authenticatedUser } from "../session/sessionActions";
 import { fetchGameDataSuccess } from "./gameDataActions";

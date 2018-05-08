@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lobby container denormalizes games data 1`] = `
+Array [
+  Object {
+    "createdTime": "2017-06-25T08:33:29.565Z",
+    "host": Object {
+      "id": "other_user_id",
+      "username": "",
+    },
+    "id": "game_id",
+    "players": Array [
+      Object {
+        "id": "other_user_id",
+        "username": "",
+      },
+    ],
+    "status": "not_started",
+  },
+]
+`;
