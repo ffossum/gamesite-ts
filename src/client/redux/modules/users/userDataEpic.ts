@@ -1,5 +1,5 @@
+import { flatMap as lodashFlatMap, uniq, values } from "lodash";
 import { stringify } from "query-string";
-import { chain, values } from "ramda";
 import { ofType } from "redux-observable";
 import { merge } from "rxjs";
 import { bufferTime, distinct, filter, flatMap, map } from "rxjs/operators";
@@ -51,8 +51,8 @@ const userDataEpic: GamesiteEpic = (action$, state$, { ajax }) => {
       ofType<Action, RefreshLobbyAction>(REFRESH_LOBBY),
       flatMap(action => {
         const games = values(action.payload);
-        const userIds = chain(game => [game.host, ...game.players], games);
-        return userIds;
+        const userIds = lodashFlatMap(games, game => [game.host, ...game.players]);
+        return uniq(userIds);
       })
     )
   ).pipe(

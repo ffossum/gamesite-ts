@@ -1,6 +1,8 @@
-import { union, without } from "ramda";
+import { union, without } from "lodash";
+import { UserId } from "../../../../common/user";
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "../lobby/lobbyActions";
+import { GameId } from "../lobby/lobbyReducer";
 import { FETCH_GAME_DATA_SUCCESS } from "./gameDataActions";
 import {
   GAME_CANCELED,
@@ -12,10 +14,10 @@ import {
 
 export type GameStatus = "not_started" | "in_progress" | "canceled" | "started";
 export interface GameDataState {
-  id: string;
-  host: string;
+  id: GameId;
+  host: UserId;
   createdTime: string;
-  players: string[];
+  players: UserId[];
   status?: GameStatus;
 }
 export interface GamesState {
@@ -107,7 +109,7 @@ export default function gamesReducer(state: GamesState = initialState, action: A
           ...state,
           [gameId]: {
             ...game,
-            players: without([userId], game.players),
+            players: without(game.players, userId),
           },
         };
       }

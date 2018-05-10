@@ -1,7 +1,6 @@
+import { keys, union, without } from "lodash";
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "./lobbyActions";
-
-import { keys, union, without } from "ramda";
 
 export type GameId = string;
 export interface LobbyState {
@@ -34,7 +33,7 @@ export default function lobbyReducer(state: LobbyState = initialState, action: A
       if (game.status && game.status !== "not_started") {
         return {
           ...state,
-          games: without([game.id], state.games),
+          games: without(state.games, game.id), // [game.id], state.games),
         };
       }
 

@@ -1,4 +1,4 @@
-import { indexBy } from "ramda";
+import { keyBy } from "lodash";
 import { combineEpics, ofType } from "redux-observable";
 import { empty, EMPTY, from, merge, of } from "rxjs";
 import { catchError, filter, flatMap, takeUntil } from "rxjs/operators";
@@ -26,7 +26,7 @@ export const enterLobbyEpic: GamesiteEpic = (action$, _, { deepstreamClient }) =
       merge(
         from(
           deepstreamClient.make("refresh-lobby").then((gamesArray: GameDataState[]) => {
-            const lobby = indexBy(game => game.id, gamesArray);
+            const lobby = keyBy(gamesArray, game => game.id); // game => game.id, gamesArray);
             return refreshLobby(lobby);
           })
         ),

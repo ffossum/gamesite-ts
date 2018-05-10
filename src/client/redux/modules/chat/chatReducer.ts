@@ -1,4 +1,4 @@
-import { omit } from "ramda";
+import { omit } from "lodash";
 import { Action } from "../../actions";
 import { ChannelState } from "./channelReducer";
 import channelReducer from "./channelReducer";
@@ -20,7 +20,7 @@ export default function chatReducer(state: ChatState = initialState, action: Act
     }
     case CLEAR_CHAT: {
       const channelName = action.payload;
-      return omit([channelName], state);
+      return omit(state, channelName);
     }
     default:
       return state;

@@ -1,4 +1,4 @@
-import { contains } from "ramda";
+import { includes } from "lodash";
 import { connect, Dispatch } from "react-redux";
 import { match } from "react-router-dom";
 import { bindActionCreators } from "redux";
@@ -65,7 +65,7 @@ export function mergeProps(
     status: game.status,
   };
 
-  const isInGame = !!(game && user && contains(user.id, game.players));
+  const isInGame = !!(game && user && includes(game.players, user.id));
 
   return {
     enterRoom(enteredGameId) {
