@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { UserId } from "../../../../common/user";
 import GameRoom from "../../../components/game/GameRoom";
 import { Props as GameRoomProps } from "../../../components/game/GameRoom";
+import { Action } from "../../actions";
 import { State } from "../root";
 import {
   cancelGame,
@@ -34,7 +35,7 @@ export function mapStateToProps(state: State, ownProps: OwnProps) {
   };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<State>) {
+export function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return bindActionCreators(
     {
       enterRoom,

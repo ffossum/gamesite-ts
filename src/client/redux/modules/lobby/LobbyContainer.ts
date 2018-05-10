@@ -3,6 +3,7 @@ import { connect, Dispatch } from "react-redux";
 import { PublicUserData } from "../../../../common/user";
 import Lobby from "../../../components/lobby/Lobby";
 import { Props as LobbyProps } from "../../../components/lobby/Lobby";
+import { Action } from "../../actions";
 import { GameDataState, GamesState } from "../games/gamesReducer";
 import { State } from "../root";
 import { createGameRequest, enterLobby, exitLobby } from "./lobbyActions";
@@ -17,7 +18,7 @@ export function mapStateToProps(state: State) {
   };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<State>) {
+export function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return {
     createGame(userId: string) {
       dispatch(createGameRequest(userId));

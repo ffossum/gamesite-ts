@@ -2,6 +2,7 @@ import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import Chat from "../../../components/chat/Chat";
 import { Props as ChatProps } from "../../../components/chat/Chat";
+import { Action } from "../../actions";
 import { State } from "../root";
 import { sendMessage } from "./chatActions";
 import { createChatContainerSelector } from "./chatSelectors";
@@ -14,7 +15,7 @@ export function createMapStateToProps(_: State, ownProps: Props) {
   return createChatContainerSelector(ownProps.channelName);
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<State>) {
+export function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return bindActionCreators({ sendMessage }, dispatch);
 }
 

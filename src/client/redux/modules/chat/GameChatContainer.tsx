@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import Chat from "../../../components/chat/Chat";
 import { Props as ChatProps } from "../../../components/chat/Chat";
 import { MessageProp } from "../../../components/chat/UserTextMessage";
+import { Action } from "../../actions";
 import { GameDataState } from "../games/gamesReducer";
 import { State } from "../root";
 import { SessionUser } from "../session/sessionReducer";
@@ -22,7 +23,7 @@ export function createMapStateToProps(_: State, ownProps: Props) {
   return createGameChatContainerSelector(ownProps.gameId);
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<State>) {
+export function mapDispatchToProps(dispatch: Dispatch<Action>) {
   return bindActionCreators({ sendGameMessage }, dispatch);
 }
 
