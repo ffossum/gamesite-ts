@@ -1,9 +1,12 @@
 import * as Koa from "koa";
 import * as koaJwt from "koa-jwt";
 
+import { getConfig } from "./config";
+const config = getConfig(process.env);
+
 const app = new Koa();
 
-app.use(koaJwt({ secret: "secret", cookie: "jwt", passthrough: true }));
+app.use(koaJwt({ secret: config.JWT_SECRET, cookie: "jwt", passthrough: true }));
 app.use(async ctx => {
   ctx.body = `<!doctype html>
 <html lang="en">
@@ -23,4 +26,4 @@ app.use(async ctx => {
   `;
 });
 
-app.listen(3000);
+app.listen(config.SERVER_PORT);
