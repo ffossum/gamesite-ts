@@ -3,7 +3,10 @@ import * as koaJwt from "koa-jwt";
 import * as mount from "koa-mount";
 import * as serve from "koa-static";
 import { getConfig } from "./config";
+import logger, { initLogger } from "./logger";
+
 const config = getConfig(process.env);
+initLogger(config.LOG_LEVEL);
 
 const app = new Koa();
 
@@ -32,4 +35,6 @@ app.use(async ctx => {
   `;
 });
 
-app.listen(config.SERVER_PORT);
+const SERVER_HOST = "0.0.0.0";
+app.listen(config.SERVER_PORT, SERVER_HOST);
+logger.info(`Server running on http://${SERVER_HOST}:${config.SERVER_PORT}`);
