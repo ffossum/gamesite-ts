@@ -12,7 +12,6 @@ import {
   leaveGame,
 } from "./gameRoomActions";
 import gameRoomEpic from "./gameRoomEpic";
-import { GameDataState } from "./gamesReducer";
 
 describe("game room epic", () => {
   const state$: any = undefined;
@@ -88,7 +87,7 @@ describe("game room epic", () => {
     const action = fetchGameDataRequest("game_id");
     const action$ = new ActionsObservable(of(action));
 
-    const mockGame: GameDataState = {
+    const mockGame = {
       createdTime: "2017-06-24T19:03:37.996Z",
       host: "user_id",
       players: ["user_id"],

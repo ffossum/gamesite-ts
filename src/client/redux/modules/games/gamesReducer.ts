@@ -1,8 +1,7 @@
 import { union, without } from "lodash";
-import { UserId } from "../../../../common/user";
+import { GameData } from "../../../../common/game";
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "../lobby/lobbyActions";
-import { GameId } from "../lobby/lobbyReducer";
 import { FETCH_GAME_DATA_SUCCESS } from "./gameDataActions";
 import {
   GAME_CANCELED,
@@ -13,15 +12,9 @@ import {
 } from "./gameRoomActions";
 
 export type GameStatus = "not_started" | "in_progress" | "canceled" | "started";
-export interface GameDataState {
-  id: GameId;
-  host: UserId;
-  createdTime: string;
-  players: UserId[];
-  status?: GameStatus;
-}
+
 export interface GamesState {
-  [gameId: string]: GameDataState;
+  [gameId: string]: GameData;
 }
 
 const initialState: GamesState = {};

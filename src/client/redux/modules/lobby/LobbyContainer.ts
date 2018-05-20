@@ -1,13 +1,13 @@
 import { filter, map, pick, values } from "lodash";
 import { connect, Dispatch } from "react-redux";
+import { GameData, GameId } from "../../../../common/game";
 import { PublicUserData } from "../../../../common/user";
 import Lobby from "../../../components/lobby/Lobby";
 import { Props as LobbyProps } from "../../../components/lobby/Lobby";
 import { Action } from "../../actions";
-import { GameDataState, GamesState } from "../games/gamesReducer";
+import { GamesState } from "../games/gamesReducer";
 import { State } from "../root";
 import { createGameRequest, enterLobby, exitLobby } from "./lobbyActions";
-import { GameId } from "./lobbyReducer";
 
 export function mapStateToProps(state: State) {
   return {
@@ -46,7 +46,7 @@ export function mergeProps(
 
   const lobbyGames = values(pick<GamesState, GameId>(games, lobby.games));
   const onlyNotStartedGames = filter(lobbyGames, game => game.status === "not_started");
-  const transformedGames = map(onlyNotStartedGames, (game: GameDataState) => {
+  const transformedGames = map(onlyNotStartedGames, (game: GameData) => {
     const { host, players, ...rest } = game;
     return {
       ...rest,

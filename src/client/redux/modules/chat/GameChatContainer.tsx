@@ -1,10 +1,10 @@
 import { connect, Dispatch } from "react-redux";
 import { bindActionCreators } from "redux";
+import { GameData } from "../../../../common/game";
 import Chat from "../../../components/chat/Chat";
 import { Props as ChatProps } from "../../../components/chat/Chat";
 import { MessageProp } from "../../../components/chat/UserTextMessage";
 import { Action } from "../../actions";
-import { GameDataState } from "../games/gamesReducer";
 import { State } from "../root";
 import { SessionUser } from "../session/sessionReducer";
 import { sendGameMessage } from "./chatActions";
@@ -14,7 +14,7 @@ export interface Props {
   gameId: string;
 }
 export interface StateProps {
-  game?: GameDataState;
+  game?: GameData;
   messages: MessageProp[];
   user?: SessionUser;
 }

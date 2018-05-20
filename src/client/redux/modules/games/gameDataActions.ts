@@ -1,7 +1,6 @@
 export const FETCH_GAME_DATA_REQUEST = "data/fetch game request";
 export const FETCH_GAME_DATA_SUCCESS = "data/fetch game success";
-
-import { GameDataState } from "./gamesReducer";
+import { GameData } from "../../../../common/game";
 
 export interface FetchGameDataRequestAction {
   type: typeof FETCH_GAME_DATA_REQUEST;
@@ -16,9 +15,9 @@ export function fetchGameDataRequest(gameId: string): FetchGameDataRequestAction
 
 export interface FetchGameDataSuccessAction {
   type: typeof FETCH_GAME_DATA_SUCCESS;
-  payload: GameDataState;
+  payload: GameData;
 }
-export function fetchGameDataSuccess(game: GameDataState): FetchGameDataSuccessAction {
+export function fetchGameDataSuccess(game: GameData): FetchGameDataSuccessAction {
   return {
     type: FETCH_GAME_DATA_SUCCESS,
     payload: game,

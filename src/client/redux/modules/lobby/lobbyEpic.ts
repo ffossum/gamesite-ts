@@ -2,8 +2,8 @@ import { keyBy } from "lodash";
 import { combineEpics, ofType } from "redux-observable";
 import { empty, EMPTY, from, merge, of } from "rxjs";
 import { catchError, filter, flatMap, takeUntil } from "rxjs/operators";
+import { GameData } from "../../../../common/game";
 import { Action } from "../../actions";
-import { GameDataState } from "../games/gamesReducer";
 import { GamesiteEpic } from "../root";
 import {
   CREATE_GAME_REQUEST,
@@ -25,7 +25,7 @@ export const enterLobbyEpic: GamesiteEpic = (action$, _, { deepstreamClient }) =
     flatMap(() =>
       merge(
         from(
-          deepstreamClient.make("refresh-lobby").then((gamesArray: GameDataState[]) => {
+          deepstreamClient.make("refresh-lobby").then((gamesArray: GameData[]) => {
             const lobby = keyBy(gamesArray, game => game.id); // game => game.id, gamesArray);
             return refreshLobby(lobby);
           })

@@ -1,5 +1,5 @@
-import { GameDataState, GamesState } from "../games/gamesReducer";
-
+import { GameData } from "../../../../common/game";
+import { GamesState } from "../games/gamesReducer";
 export const CREATE_GAME_REQUEST = "lobby/create game request";
 export const GAME_CREATED = "lobby/game created";
 export const GAME_UPDATED = "lobby/game updated";
@@ -54,10 +54,10 @@ export function createGameRequest(userId: string): CreateGameRequestAction {
 
 export interface GameCreatedAction {
   type: typeof GAME_CREATED;
-  payload: GameDataState;
+  payload: GameData;
 }
 
-export function gameCreated(gameData: GameDataState): GameCreatedAction {
+export function gameCreated(gameData: GameData): GameCreatedAction {
   return {
     type: GAME_CREATED,
     payload: gameData,
@@ -66,9 +66,9 @@ export function gameCreated(gameData: GameDataState): GameCreatedAction {
 
 export interface GameUpdatedAction {
   type: typeof GAME_UPDATED;
-  payload: Partial<GameDataState>;
+  payload: Partial<GameData>;
 }
-export function gameUpdated(partialGameData: Partial<GameDataState>): GameUpdatedAction {
+export function gameUpdated(partialGameData: Partial<GameData>): GameUpdatedAction {
   return {
     type: GAME_UPDATED,
     payload: partialGameData,

@@ -1,8 +1,8 @@
 import { keys, union, without } from "lodash";
+import { GameId } from "../../../../common/game";
 import { Action } from "../../actions";
 import { GAME_CREATED, GAME_UPDATED, REFRESH_LOBBY } from "./lobbyActions";
 
-export type GameId = string;
 export interface LobbyState {
   games: GameId[];
 }
