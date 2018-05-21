@@ -3,6 +3,7 @@ import * as React from "react";
 import { PublicUserData } from "../../../common/user";
 import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 import { GameStatus } from "../../redux/modules/games/gamesReducer";
+import PlayerList from "./PlayerList";
 import SpectatorRoom from "./SpectatorRoom";
 
 export interface Game {
@@ -48,7 +49,10 @@ export default class GameRoom extends React.Component<Props> {
       return <div>Game canceled</div>;
     }
 
-    const isInGame = user && game && find(game.players, player => player.id === user.id);
+    const isHost = user && game && user.id === game.host.id;
+    const isPlayer = user && game && find(game.players, player => player.id === user.id);
+
+    const isInGame = isHost || isPlayer;
 
     if (!isInGame) {
       return (
@@ -63,8 +67,6 @@ export default class GameRoom extends React.Component<Props> {
       );
     }
 
-    const isHost = user && user.id === game.host.id;
-
     return (
       <div>
         <h2>{gameId}</h2>
@@ -72,14 +74,7 @@ export default class GameRoom extends React.Component<Props> {
           <div>
             <div>
               <h3>Players:</h3>
-              <ul>
-                {game.players.map(player => (
-                  <li key={player.id}>
-                    {player.username}
-                    {game.host.id === player.id && <span> (Host)</span>}
-                  </li>
-                ))}
-              </ul>
+              <PlayerList host={game.host} players={game.players} />
             </div>
             {isHost && [
               <button key="cancel" onClick={this.handleCancelClick}>

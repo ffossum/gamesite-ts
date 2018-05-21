@@ -2,6 +2,7 @@ import * as React from "react";
 import { PublicUserData } from "../../../common/user";
 import GameChatContainer from "../../redux/modules/chat/GameChatContainer";
 import { Game } from "./GameRoom";
+import PlayerList from "./PlayerList";
 
 export interface Props {
   enterSpectatorRoom: (gameId: string) => void;
@@ -39,14 +40,7 @@ export default class SpectatorRoom extends React.Component<Props> {
           <div>
             <div>
               <h3>Players:</h3>
-              <ul>
-                {game.players.map(player => (
-                  <li key={player.id}>
-                    {player.username}
-                    {game.host.id === player.id && <span> (Host)</span>}
-                  </li>
-                ))}
-              </ul>
+              <PlayerList host={game.host} players={game.players} />
             </div>
             <button disabled={!user} onClick={this.handleJoinClick}>
               Join game
