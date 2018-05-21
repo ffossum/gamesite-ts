@@ -44,7 +44,7 @@ const userDataEpic: GamesiteEpic = (action$, state$, { ajax }) => {
       ofType<Action, FetchGameDataSuccessAction>(FETCH_GAME_DATA_SUCCESS),
       flatMap(action => {
         const game = action.payload;
-        return game.players;
+        return [game.host, ...game.players];
       })
     ),
     action$.pipe(
